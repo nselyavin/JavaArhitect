@@ -21,14 +21,16 @@ public class main {
                 while(i < 100) {
                     System.out.println("Ping");
                     i++;
-                    locker.notifyAll();
+                    locker.notify();
                     try {
                         locker.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+                locker.notify();
             }
+
         }
     }
 
@@ -55,6 +57,7 @@ public class main {
                         e.printStackTrace();
                     }
                 }
+                locker.notify();
             }
         }
     }
@@ -68,9 +71,5 @@ public class main {
 
         th.start();
         th2.start();
-
-
-        System.out.println("puk");
     }
-
 }
